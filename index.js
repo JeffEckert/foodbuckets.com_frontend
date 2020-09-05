@@ -2,6 +2,10 @@ const endPoint = "http://localhost:3000/api/v1/journal_entries"
 
 document.addEventListener('DOMContentLoaded', (event) => {
    getJournalEntry()
+
+   let createJournalEntryForm = document.querySelector('#create-journalEntry-form')
+
+   createJournalEntryForm.addEventListener('submit', (e) => createFormHandler(e))
 })
 
 function getJournalEntry() {
@@ -24,4 +28,4 @@ function getJournalEntry() {
               ).innerHTML += journalEntryMarkup
           })
         })
-}
+};
