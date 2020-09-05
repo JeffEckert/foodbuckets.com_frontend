@@ -29,3 +29,13 @@ function getJournalEntry() {
           })
         })
 };
+
+function createFormHandler(e) {
+    e.preventDefault()
+    const mealInput = document.querySelector('#input-meal').value
+    const descriptionInput = document.querySelector('#input-description').value
+    const imageInput = document.querySelector('#input-url').value
+    const calorieInput = document.querySelector('#input-calorieCount').value
+    const dateInput = document.querySelector('#input-date').value
+    postJournalEntry(mealInput, descriptionInput, imageInput, calorieInput, dateInput)
+}
