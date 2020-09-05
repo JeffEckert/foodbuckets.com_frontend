@@ -39,3 +39,4 @@ function createFormHandler(e) {
     const dateInput = document.querySelector('#input-date').value
     postJournalEntry(mealInput, descriptionInput, imageInput, calorieInput, dateInput)
 }
+
