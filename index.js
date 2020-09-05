@@ -64,9 +64,25 @@ function postJournalEntry(meal, description, image, calorie, date) {
                 <button data-id=${journal_entry.id}>edit</button>
          </div>
          <br><br>`;
-         
+
          document.querySelector('#journalEntry-container'
          ).innerHTML += journalEntryMarkup
     
     })
+};
+
+function render(journal_entry) {
+    const journalEntryMarkup = `
+        <div data-id=${journal_entry.id}>
+                <img src=${journalEntryData.attributes.image_url} height="200" width="250"></img>
+                <h3>${journal_entry.attributes.meal}</h3>
+                <p>${journal_entry.attributes.description}</p>
+                <p>${journal_entry.attributes.calorie_count}</p>
+                <p>${journal_entry.attributes.calendar_date.date}</p>
+                <button data-id=${journal_entry.id}>edit</button>
+         </div>
+         <br><br>`;
+
+         document.querySelector('#journalEntry-container'
+         ).innerHTML += journalEntryMarkup
 }
