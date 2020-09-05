@@ -40,3 +40,6 @@ function createFormHandler(e) {
     postJournalEntry(mealInput, descriptionInput, imageInput, calorieInput, dateInput)
 }
 
+function postJournalEntry(mealInput, descriptionInput, imageInput, calorieInput, dateInput) {
+    
+}
