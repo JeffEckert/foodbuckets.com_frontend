@@ -41,5 +41,5 @@ function createFormHandler(e) {
 }
 
 function postJournalEntry(mealInput, descriptionInput, imageInput, calorieInput, dateInput) {
-    
+    console.log(mealInput, descriptionInput, imageInput, calorieInput, dateInput)
 }
