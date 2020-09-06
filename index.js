@@ -37,10 +37,10 @@ function createFormHandler(e) {
     const descriptionInput = document.querySelector('#input-description').value
     const imageInput = document.querySelector('#input-url').value
     const calorieInput = document.querySelector('#input-calorieCount').value
-    const dateInput = document.querySelector('#input-date').value
     const categoryInput = document.querySelector('#categories').value
     const categoryId = parseInt(categoryInput)
-    postJournalEntry(mealInput, descriptionInput, imageInput, calorieInput, dateInput, categoryInput)
+    const dateInput = document.querySelector('#input-date').value
+    postJournalEntry(mealInput, descriptionInput, imageInput, calorieInput, categoryInput, dateInput)
 }
 
 function postJournalEntry(meal, description, image_url, calorie_count, category_id, date) {
@@ -49,27 +49,44 @@ function postJournalEntry(meal, description, image_url, calorie_count, category_
     let bodyData = {meal, description, image_url, calorie_count, category_id, date}
 
     fetch(endPoint, {
+        // POST request
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(bodyData)
-    })
+      })
     .then(response => response.json())
     .then(journal_entry => {
         console.log(journal_entry)
-        // const journalEntryData = journal_entry.data
-        // const journalEntryMarkup = `
-        // <div data-id=${journal_entry.id}>
-        //         <img src=${journal_entry.attributes.image_url} height="200" width="250">
-        //         <h3>${journal_entry.attributes.meal}</h3>
-        //         <p>${journal_entry.attributes.description}</p>
-        //         <p>${journal_entry.attributes.calorie_count}</p>
-        //         <p>${journal_entry.attributes.calendar_date.date}</p>
-        //         <button data-id=${journal_entry.id}>edit</button>
-        //       </div>
-        //  <br><br>`;
+        const journalEntryData = journal_entry.data
+        const journalEntryMarkup = `
+        <div data-id=${journal_entry.id}>
+                <img src=${journal_entryData.attributes.image_url} height="200" width="250">
+                <h3>${journal_entryData.attributes.meal}</h3>
+                <p>${journal_entryData.attributes.description}</p>
+                <p>${journal_entryData.attributes.calorie_count}</p>
+                <p>${journal_entryData.attributes.category.category}</p>
+                <p>${journal_entryData.attributes.date}</p>
+                <button data-id=${journal_entry.id}>edit</button>
+              </div>
+         <br><br>`;
 
-        //  document.querySelector('#journalEntry-container'
-        //  ).innerHTML += journalEntryMarkup
+         document.querySelector('#journalEntry-container'
+         ).innerHTML += journalEntryMarkup
     
     })
     };
+
+    // function render(journal_entry) {
+    //         const journalEntryMarkup = `
+    //             <div data-id=${journal_entry.id}>
+    //                     <img src=${journalEntryData.attributes.image_url} height="200" width="250"></img>
+    //                     <h3>${journal_entry.attributes.meal}</h3>
+    //                     <p>${journal_entry.attributes.description}</p>
+    //                     <p>${journal_entry.attributes.calorie_count}</p>
+    //                     <p>${journal_entry.attributes.calendar_date.date}</p>
+    //                     <button data-id=${journal_entry.id}>edit</button>
+    //              </div>
+    //              <br><br>`;
+        
+    //              document.querySelector('#journalEntry-container').innerHTML += journalEntryMarkup;
+    //     }
