@@ -19,7 +19,8 @@ function getJournalEntry() {
                 <h3>${journal_entry.attributes.meal}</h3>
                 <p>${journal_entry.attributes.description}</p>
                 <p>${journal_entry.attributes.calorie_count}</p>
-                <p>${journal_entry.attributes.calendar_date.date}</p>
+                <p>${journal_entry.attributes.date}</p>
+                <p>${journal_entry.attributes.category.category}</p>
                 <button data-id=${journal_entry.id}>edit</button>
               </div>
               <br><br>`;
@@ -37,14 +38,15 @@ function createFormHandler(e) {
     const imageInput = document.querySelector('#input-url').value
     const calorieInput = document.querySelector('#input-calorieCount').value
     const dateInput = document.querySelector('#input-date').value
-    const calendarDateId = parseInt(dateInput)
-    postJournalEntry(mealInput, descriptionInput, imageInput, calorieInput, dateInput)
+    const categoryInput = document.querySelector('#categories').value
+    const categoryId = parseInt(categoryInput)
+    postJournalEntry(mealInput, descriptionInput, imageInput, calorieInput, dateInput, categoryInput)
 }
 
-function postJournalEntry(meal, description, image_url, calorie_count, calendar_date_id) {
-    // console.log(meal, description, image_url, calorie_count, calendar_date_id);
+function postJournalEntry(meal, description, image_url, calorie_count, category_id, date) {
+    console.log(meal, description, image_url, calorie_count, category_id, date);
 
-    let bodyData = {meal, description, image_url, calorie_count, calendar_date_id}
+    let bodyData = {meal, description, image_url, calorie_count, category_id, date}
 
     fetch(endPoint, {
         method: "POST",
