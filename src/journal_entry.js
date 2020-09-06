@@ -1,0 +1,3 @@
+class journal_entry {
+
+}
