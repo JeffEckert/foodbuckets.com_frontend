@@ -13,23 +13,10 @@ function getJournalEntry() {
     .then(response => response.json())
     .then(journal_entries => {
         journal_entries.data.forEach(journal_entry => {
-            const journalEntryMarkup = `
-              <div data-id=${journal_entry.id}>
-                <img src=${journal_entry.attributes.image_url} height="200" width="250">
-                <h3>${journal_entry.attributes.meal}</h3>
-                <p>${journal_entry.attributes.description}</p>
-                <p>${journal_entry.attributes.calorie_count}</p>
-                <p>${journal_entry.attributes.date}</p>
-                <p>${journal_entry.attributes.category.category}</p>
-                <button data-id=${journal_entry.id}>edit</button>
-              </div>
-              <br><br>`;
-    
-              document.querySelector('#journalEntry-container'
-              ).innerHTML += journalEntryMarkup
-          })
+          render(journal_entry)
         })
-};
+    })
+}
 
 function createFormHandler(e) {
     e.preventDefault()
@@ -48,46 +35,34 @@ function postJournalEntry(meal, description, image_url, calorie_count, category_
 
     let bodyData = {meal, description, image_url, calorie_count, category_id, date}
 
-    fetch(endPoint, {
+     fetch(endPoint, {
         // POST request
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(bodyData)
-      })
+    })
     .then(response => response.json())
     .then(journal_entry => {
         console.log(journal_entry)
         const journalEntryData = journal_entry.data
-        const journalEntryMarkup = `
-        <div data-id=${journal_entry.id}>
-                <img src=${journal_EntryData.attributes.image_url} height="200" width="250">
-                <h3>${journal_entryData.attributes.meal}</h3>
-                <p>${journal_entryData.attributes.description}</p>
-                <p>${journal_entryData.attributes.calorie_count}</p>
-                <p>${journal_entryData.attributes.category.category}</p>
-                <p>${journal_entryData.attributes.date}</p>
-                <button data-id=${journal_entry.id}>edit</button>
-              </div>
-         <br><br>`;
-
-         document.querySelector('#journalEntry-container'
-         ).innerHTML += journalEntryMarkup
-    
+        render(journalEntryData)
     })
-    };
+};
 
-    function render(journal_entry) {
+    
+function render(journal_entry) {
             const journalEntryMarkup = `
                 <div data-id=${journal_entry.id}>
-                    <img src=${journal_EntryData.attributes.image_url} height="200" width="250">
-                    <h3>${journal_entryData.attributes.meal}</h3>
-                    <p>${journal_entryData.attributes.description}</p>
-                    <p>${journal_entryData.attributes.calorie_count}</p>
-                    <p>${journal_entryData.attributes.category.category}</p>
-                    <p>${journal_entryData.attributes.date}</p>
+                <img src=${journal_entry.attributes.image_url} height="200" width="250">
+                    <h3>${journal_entry.attributes.meal}</h3>
+                    <p>${journal_entry.attributes.description}</p>
+                    <p>${journal_entry.attributes.calorie_count}</p>
+                    <p>${journal_entry.attributes.category.category}</p>
+                    <p>${journal_entry.attributes.date}</p>
                     <button data-id=${journal_entry.id}>edit</button>
               </div>
                  <br><br>`;
         
                  document.querySelector('#journalEntry-container').innerHTML += journalEntryMarkup;
-        }
+};
+
