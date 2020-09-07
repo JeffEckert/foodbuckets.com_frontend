@@ -18,7 +18,7 @@ function getJournalEntry() {
 
             let newJournalEntry = new JournalEntry(journal_entry, journal_entry.attributes)
 
-          render(journal_entry)
+            document.querySelector('#journalEntry-container').innerHTML += newJournalEntry.renderJournalEntryCard();
         })
     })
 }
@@ -49,8 +49,10 @@ function postJournalEntry(meal, description, image_url, calorie_count, category_
     .then(response => response.json())
     .then(journal_entry => {
         console.log(journal_entry)
-        const journalEntryData = journal_entry.data
-        render(journalEntryData)
+        const newJournalEntry = new JournalEntry(journal_entry.data.id, journal_entry.data.attributes)
+        
+
+        document.querySelector('#journalEntry-container').innerHTML += newJournalEntry.renderJournalEntryCard();
     })
 };
 
