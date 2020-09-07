@@ -9,15 +9,51 @@
         <title></title>
         <script type="text/javascript" src="src/index.js"></script>
         <script type="text/javascript" src="src/journal_entry.js"></script>
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <style>
+            .bd-placeholder-img {
+              font-size: 1.125rem;
+              text-anchor: middle;
+              -webkit-user-select: none;
+              -moz-user-select: none;
+              -ms-user-select: none;
+              user-select: none;
+            }
+      
+            @media (min-width: 768px) {
+              .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+              }
+            }
+          </style>
+          <!-- Custom styles for this template -->
+          <link href="index.css" rel="stylesheet">
+        
     </head>
     <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                  
+                <a class="navbar-brand" href="#">Food Buckets Food Journal</a>
+              </div>
+              <ul class="nav navbar-nav">
+                
+              </ul>
+            </div>
+          </nav>
 
+          
         <div class="form-container">
-            <form id="create-journalEntry-form" style="">
+            <form id="create-journalEntry-form">
+                <section class="jumbotron text-center"></section>
                 <h3>Create A Journal Entry!</h3>
+                <label for='input-meal'>Enter Meal name Here</label>
                 <input id='input-meal' type="text" name="meal" value="" placeholder="Enter your Meal type..." class="input-text">
                 <br><br>
                 <textarea id='input-description' name="description" rows="8" cols="80" value="" placeholder="Enter your meal ingrediants and description..."></textarea>
