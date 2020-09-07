@@ -36,8 +36,7 @@ function createFormHandler(e) {
 }
 
 function postJournalEntry(meal, description, image_url, calorie_count, category_id, date) {
-    console.log(meal, description, image_url, calorie_count, category_id, date);
-
+    
     let bodyData = {meal, description, image_url, calorie_count, category_id, date}
 
      fetch(endPoint, {
@@ -48,7 +47,7 @@ function postJournalEntry(meal, description, image_url, calorie_count, category_
     })
     .then(response => response.json())
     .then(journal_entry => {
-        console.log(journal_entry)
+        debugger
         const newJournalEntry = new JournalEntry(journal_entry.data.id, journal_entry.data.attributes)
         
 
