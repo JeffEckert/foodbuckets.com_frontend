@@ -9,7 +9,7 @@ class JournalEntry {
         this.category = journalEntryAttributes.category;
         this.date = journalEntryAttributes.date;
         JournalEntry.all.push(this);
-    
+        console.log(this)
     }
     renderJournalEntryCard() {
        return `
@@ -31,6 +31,7 @@ class JournalEntry {
           </div>
         </div>
        `
+
     }
 }
 
