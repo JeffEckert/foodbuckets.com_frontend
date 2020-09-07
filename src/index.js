@@ -13,7 +13,12 @@ function getJournalEntry() {
     .then(response => response.json())
     .then(journal_entries => {
         journal_entries.data.forEach(journal_entry => {
-          render(journal_entry)
+
+            // debugger
+
+            let newJournalEntry = new JournalEntry(journal_entry, journal_entry.attributes)
+
+            document.querySelector('#journalEntry-container').innerHTML += newJournalEntry.renderJournalEntryCard();
         })
     })
 }
@@ -44,25 +49,13 @@ function postJournalEntry(meal, description, image_url, calorie_count, category_
     .then(response => response.json())
     .then(journal_entry => {
         console.log(journal_entry)
-        const journalEntryData = journal_entry.data
-        render(journalEntryData)
+        const newJournalEntry = new JournalEntry(journal_entry.data.id, journal_entry.data.attributes)
+        
+
+        document.querySelector('#journalEntry-container').innerHTML += newJournalEntry.renderJournalEntryCard();
     })
 };
 
     
-function render(journal_entry) {
-            const journalEntryMarkup = `
-                <div data-id=${journal_entry.id}>
-                <img src=${journal_entry.attributes.image_url} height="200" width="250">
-                    <h3>${journal_entry.attributes.meal}</h3>
-                    <p>${journal_entry.attributes.description}</p>
-                    <p>${journal_entry.attributes.calorie_count}</p>
-                    <p>${journal_entry.attributes.category.category}</p>
-                    <p>${journal_entry.attributes.date}</p>
-                    <button data-id=${journal_entry.id}>edit</button>
-              </div>
-                 <br><br>`;
-        
-                 document.querySelector('#journalEntry-container').innerHTML += journalEntryMarkup;
-};
+
 
