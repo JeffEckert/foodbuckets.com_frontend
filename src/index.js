@@ -1,6 +1,6 @@
 const endPoint = "http://localhost:3000/api/v1/journal_entries"
 
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
    getJournalEntry()
 
    let createJournalEntryForm = document.querySelector('#create-journalEntry-form')
@@ -28,16 +28,17 @@ function createFormHandler(e) {
     const mealInput = document.querySelector('#input-meal').value
     const descriptionInput = document.querySelector('#input-description').value
     const imageInput = document.querySelector('#input-url').value
-    const calorieInput = document.querySelector('#input-calorieCount').value
+    const calorieCountInput = document.querySelector('#input-calorieCount').value
     const categoryInput = document.querySelector('#categories').value
     const categoryId = parseInt(categoryInput)
     const dateInput = document.querySelector('#input-date').value
-    postJournalEntry(mealInput, descriptionInput, imageInput, calorieInput, categoryInput, dateInput)
+    postJournalEntry(mealInput, descriptionInput, imageInput, calorieCountInput, categoryInput, dateInput)
 }
 
-    function postJournalEntry(meal, description, image_url, calorie_count, category_id, date) {
-    console.log(meal, description, image_url, calorie_count, category_id, date);
 
+
+function postJournalEntry(meal, description, image_url, calorie_count, category_id, date) {
+    
     let bodyData = {meal, description, image_url, calorie_count, category_id, date}
 
      fetch(endPoint, {
@@ -56,6 +57,7 @@ function createFormHandler(e) {
     })
 };
 
-    
+
+
 
 

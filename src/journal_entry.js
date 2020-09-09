@@ -1,7 +1,6 @@
 class JournalEntry {
     constructor(id, journalEntryAttributes) {
         this.id = id;
-        // debugger
         this.meal = journalEntryAttributes.meal;
         this.description = journalEntryAttributes.description;
         this.image_url = journalEntryAttributes.image_url;
@@ -9,7 +8,7 @@ class JournalEntry {
         this.category = journalEntryAttributes.category;
         this.date = journalEntryAttributes.date;
         JournalEntry.all.push(this);
-        console.log(this)
+        
     }
     renderJournalEntryCard() {
        return `
