@@ -21,8 +21,8 @@ class JournalEntry {
               <p class="card-text">${this.category.category}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+        
+                  <button type="submit"  class="btn btn-sm btn-outline-secondary">Delete</button>
                 </div>
                 <small class="text-muted">Calories ${this.calorie_count}</small>
               </div>
@@ -32,6 +32,10 @@ class JournalEntry {
        `
 
     }
+    static findById(id) {
+        return this.all.find(journal_entry => journal_entry.id === id);
+    }
+   
 }
 
 JournalEntry.all = [];
