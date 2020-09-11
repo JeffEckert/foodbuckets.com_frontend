@@ -6,13 +6,13 @@ document.addEventListener('DOMContentLoaded', () => {
    const createJournalEntryForm = document.querySelector('#create-journalEntry-form')
     createJournalEntryForm.addEventListener('submit', (e) => createFormHandler(e))
 
-    const deleteJournalEntryForm = document.querySelector('#journalEntry-container')
-    deleteJournalEntryForm.addEventListener('submit', e => {
-    const id = parseInt(e.target.dataset.id);
+    const journalEntryContainer = document.querySelector('#journalEntry-container')
+    journalEntryContainer.addEventListener('click', (e) => {
+    const id = journalEntryContainer.target.id;
     const journal_entry = JournalEntry.findById(id);
-    console.log(journal__entry);
     deleteFormHandler(e);
     })
+    debugger
 });
 
 function getJournalEntry() {
@@ -95,5 +95,6 @@ function deleteJournalEntry(journalEntry, meal, description, image_url, calorieC
     .then(response => console.log(res));
 
 };
+
 
 
