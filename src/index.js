@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
    const createJournalEntryForm = document.querySelector('#create-journalEntry-form')
     createJournalEntryForm.addEventListener('submit', (e) => createFormHandler(e))
 
-    const journalEntryContainer = document.querySelector('#journalEntry-container')
+    const journalEntryContainer = document.querySelector('#journalEntry-container') //This is where the issue starts.  I am trying to pull an id from form on journal_entry.js line 16 so that I can use it to complete search byid and then passing to the deleteformhandler.
+                                                                                
     journalEntryContainer.addEventListener('click', (e) => {
     const id = journalEntryContainer.target.id;
     const journal_entry = JournalEntry.findById(id);
