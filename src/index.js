@@ -1,4 +1,7 @@
 const endPoint = "http://localhost:3000/api/v1/journal_entries"
+const cardId = document.querySelector("#cardId")
+
+console.log(cardId, "<===card id")
 
 document.addEventListener('DOMContentLoaded', () => {
    getJournalEntry()
@@ -6,15 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
    const createJournalEntryForm = document.querySelector('#create-journalEntry-form')
     createJournalEntryForm.addEventListener('submit', (e) => createFormHandler(e))
 
-    const journalEntryContainer = document.querySelector('#journalEntry-container') //This is where the issue starts.  I am trying to pull an id from form on journal_entry.js line 16 so that I can use it to complete search byid and then passing to the deleteformhandler.
-                                                                                
-    journalEntryContainer.addEventListener('click', (e) => {
-    const id = journalEntryContainer.target.id;
-    const journal_entry = JournalEntry.findById(id);
-    deleteFormHandler(e);
-    })
-    debugger
 });
+
 
 function getJournalEntry() {
     fetch(endPoint)
@@ -43,18 +39,7 @@ function createFormHandler(e) {
     postJournalEntry(mealInput, descriptionInput, imageInput, calorieCountInput, categoryInput, dateInput)
 }
 
-function deleteFormHandler(e) {
-    e.preventDefault();
-    const id = parseInt(e.target.dataset.id);
-    const journalEntry= JournalEntry.findById(id);
-    const meal = e.target.querySelector('#input-meal').value;
-    const description = e.target.querySelector('#input-description').value;
-    const image_url = e.target.querySelector('#input-url').value;
-    const calorieCount = e.target.querySelector('#input-calorieCount').value;
-    const category_id = parseInt(e.target.querySelector('#categories').value);
-    const date = e.target.querySelector('#input-date').value;
-    deleteJournalEntry(journalEntry, meal, description, image_url, calorieCount, category_id, date)
-  }
+
 
 
 function postJournalEntry(meal, description, image_url, calorie_count, category_id, date) {
@@ -69,7 +54,6 @@ function postJournalEntry(meal, description, image_url, calorie_count, category_
     })
     .then(response => response.json())
     .then(journal_entry => {
-        console.log(journal_entry)
         const newJournalEntry = new JournalEntry(journal_entry.data.id, journal_entry.data.attributes)
         
 
@@ -77,25 +61,7 @@ function postJournalEntry(meal, description, image_url, calorie_count, category_
     })
 };
 
-function deleteJournalEntry(journalEntry, meal, description, image_url, calorieCount, category_id, date) {
 
-    let bodyData = {journalEntry, meal, description, image_url, calorieCount, category_id, date}
-
-    fetch(endPoint, {
-        method: "DELETE",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(bodyData)
-    })
-    .then(response => {
-        if (res.ok) {
-            return Promise.resolve('User deleted.');
-        } else {
-            return Promise.reject('An error occurred.');
-        }
-    })
-    .then(response => console.log(res));
-
-};
 
 
 
