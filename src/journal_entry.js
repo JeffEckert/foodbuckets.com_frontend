@@ -52,6 +52,7 @@ function handleDelete(id){
         console.log(response)
     })
     .then(err => console.log(err));
+    location.reload();
 }
 
 

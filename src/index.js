@@ -58,7 +58,9 @@ function postJournalEntry(meal, description, image_url, calorie_count, category_
         
 
         document.querySelector('#journalEntry-container').innerHTML += newJournalEntry.renderJournalEntryCard();
+        
     })
+    location.reload();
 };
 
 
