@@ -35,7 +35,11 @@ class JournalEntry {
             </div>
        `
 
+
     }
+
+   
+
     static findById(id) {
         return this.all.find(journal_entry => journal_entry.id === id);
     }
